@@ -62,8 +62,7 @@ public class Main {
     }
 
     private static void determineTime() {
-        String[] information = null;
-        while (information == null) {
+        while (true) {
             System.out.println("Enter beginning and end date:\nyyyy-MM-dd-HH-mm-HH-mm\nExample:2020-11-23-12-00-14-00");
             try {
                 String dateInput = getDateInput(scanner.nextLine().trim());
@@ -72,8 +71,10 @@ public class Main {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
                 Date date1 = format.parse(beginningDate);
                 Date date2 = format.parse(endDate);
-                System.out.println(date1.toString());
-                System.out.println(date2.toString());
+                System.out.println("Starts at: " + date1.toString());
+                System.out.println("Ends at: " + date2.toString());
+                visitTimes.add(new VisitTime(date1, date2));
+                break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
