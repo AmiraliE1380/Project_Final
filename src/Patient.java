@@ -27,11 +27,14 @@ public class Patient implements Serializable {
     }
 
     public static void save() {
+        new File("patients").mkdir();
         for(Patient patient : patients.values()) {
             try {
-                FileOutputStream fileOutputStream = new FileOutputStream(String.valueOf(patient.nationalCode));
+                FileOutputStream fileOutputStream = new FileOutputStream("patients\\" +
+                        String.valueOf(patient.nationalCode));
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
                 objectOutputStream.writeObject(patient);
+                objectOutputStream.close();
             } catch (IOException e) {
                 System.out.println("Cannot save data...");
             }

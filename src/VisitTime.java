@@ -1,4 +1,4 @@
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -42,11 +42,26 @@ public class VisitTime implements Serializable {
         this.patientsNationalCode = patientsNationalCode;
     }
 
+    @Override
+    public String toString() {
+        return beginningDate.toString() + '\n' + endDate.toString() + '\n';
+    }
+
     public static void load() {
 
     }
 
     public static void save() {
-
+        new File("Visit Times").mkdir();
+        for(VisitTime visitTime : visitTimes) {
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream("Visit Times\\" + visitTime.toString());
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                objectOutputStream.writeObject(visitTime);
+                objectOutputStream.close();
+            } catch (IOException e) {
+                System.out.println("Cannot save data...");
+            }
+        }
     }
 }
