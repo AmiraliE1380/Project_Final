@@ -3,13 +3,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
+    private static Scanner scanner;
+
     public static void main(String[] args) {
         run();
     }
 
     private static void run() {
         int input;
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         while(true) {
             System.out.println("What do you want to do?\n" +
                     "1. Create an account\n" +
@@ -54,7 +56,23 @@ public class Main {
     }
 
     private static void createAccount() {
+        String input = "";
+        while (input.length() == 0) {
+            System.out.println("Enter:\nName-National Code-Age");
+            try {
+                input = getPatientsInformation(scanner.nextLine());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
+    private static String getPatientsInformation(String nextLine) throws Exception {
+        Pattern pattern = Pattern.compile("^[a-zA-Z]+-\\d+-\\d+$");
+        Matcher matcher = pattern.matcher(nextLine);
+        if(!matcher.matches())
+            throw new Exception("Enter valid input!");
+        return nextLine;
     }
 
     private static int validateInput(String nextLine) throws Exception {
