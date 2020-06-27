@@ -14,4 +14,8 @@ public class VisitTime {
     public void setPatientsNationalCode(int patientsNationalCode) {
         this.patientsNationalCode = patientsNationalCode;
     }
+
+    public static void reserveTimeForPatient() {
+
+    }
 }

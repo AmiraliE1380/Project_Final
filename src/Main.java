@@ -64,16 +64,16 @@ public class Main {
                     "\nyyyy-MM-dd-HH-mm-HH-mm\nExample:2020-11-23-12-00-14-00");
             try {
                 String information = getDateAndNationalCode(scanner.nextLine().trim());
-                int nationalCode = getNationalCodeInput(information);
+                int nationalCode = Integer.parseInt(information.split(",")[0]);
+                String datesInString = information.split(",")[1];
+                String beginningDate = datesInString.substring(0, 16);
+                String endDate = datesInString.substring(0, 10) + datesInString.substring(16);
+
                 break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private static int getNationalCodeInput(String information) {
-        return 0;
     }
 
     private static String getDateAndNationalCode(String input) throws Exception {
