@@ -1,4 +1,7 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,7 +34,7 @@ public class Main {
                         determineTime();
                         break;
                     case 3:
-                        pickTime();
+                        reserve();
                         break;
                     case 4:
                         viewRecords();
@@ -49,12 +52,40 @@ public class Main {
 
     }
 
-    private static void pickTime() {
+    private static void reserve() {
 
     }
 
     private static void determineTime() {
+        String[] information = null;
+        while (information == null) {
+            System.out.println("Enter beginning and end date:\nyyyy-MM-dd-HH-mm-HH-mm\nExample:2020-11-23-12-00-14-00");
+            try {
+                String dateInput = getDateInput(scanner.nextLine());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String dateString = format.format( new Date());
+            try {
+                Date date = format.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            try {
+                information = getPatientsInformation(scanner.nextLine());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
+    private static String getDateInput(String nextLine) throws Exception {
+        Pattern pattern = Pattern.compile("^[a-zA-Z]+-\\d+-\\d+$");
+        Matcher matcher = pattern.matcher(nextLine);
+        if(!matcher.matches())
+            throw new Exception("Enter valid input!");
+        return nextLine;
     }
 
     private static void createAccount() {
