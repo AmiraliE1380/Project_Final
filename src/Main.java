@@ -19,11 +19,42 @@ public class Main {
                     "5. Exit");
             try {
                 input = validateInput(scanner.nextLine());
+                switch (input) {
+                    case 1:
+                        createAccount();
+                        break;
+                    case 2:
+                        determineTime();
+                        break;
+                    case 3:
+                        pickTime();
+                        break;
+                    case 4:
+                        viewRecords();
+                        break;
+                    case 5:
+                        System.exit(1);
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
+    }
+
+    private static void viewRecords() {
+
+    }
+
+    private static void pickTime() {
+
+    }
+
+    private static void determineTime() {
+
+    }
+
+    private static void createAccount() {
+
     }
 
     private static int validateInput(String nextLine) throws Exception {
