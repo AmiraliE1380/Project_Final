@@ -62,17 +62,13 @@ public class Main {
             System.out.println("Enter beginning and end date:\nyyyy-MM-dd-HH-mm-HH-mm\nExample:2020-11-23-12-00-14-00");
             try {
                 String dateInput = getDateInput(scanner.nextLine().trim());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
-            String dateString = format.format( new Date());
-            try {
-                Date date = format.parse(dateString);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            try {
+                String beginningDate = dateInput.split(",")[0];
+                String endDate = dateInput.split(",")[1];
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
+                Date date1 = format.parse(beginningDate);
+                Date date2 = format.parse(endDate);
+                System.out.println(date1.toString());
+                System.out.println(date2.toString());
                 information = getPatientsInformation(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -87,7 +83,7 @@ public class Main {
             throw new Exception("Enter valid input!");
         String beginningDate = nextLine.substring(0, 16);
         String endDate = nextLine.substring(0, 10) + nextLine.substring(16);
-        return nextLine;
+        return beginningDate + "," + endDate;
     }
 
     private static void createAccount() {
