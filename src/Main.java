@@ -57,8 +57,8 @@ public class Main {
 
     private static void reserve() {
         while(true) {
-            System.out.println("Enter you national code, then enter beginning and end date:" +
-                    "\nyyyy-MM-dd-HH-mm-HH-mm\nExample:2020-11-23-12-00-14-00");
+            System.out.println("Enter your national code, then enter beginning and end date:" +
+                    "\nNational Code-yyyy-MM-dd-HH-mm-HH-mm\nExample:0925617318-2020-11-23-12-00-14-00");
             try {
                 String information = getDateAndNationalCode(scanner.nextLine().trim());
                 int nationalCode = Integer.parseInt(information.split(",")[0]);
