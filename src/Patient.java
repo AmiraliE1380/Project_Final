@@ -23,9 +23,21 @@ public class Patient implements Serializable {
     }
 
     public static void load() {
-        boolean isMoreObjects = true;
-        while(isMoreObjects) {
-
+        File directory = new File("patients");
+        String[] pathNames = directory.list();
+        if (pathNames == null)
+            return;
+        for(String objectName : pathNames) {
+            try {
+                FileInputStream fileInputStream = new FileInputStream("patients\\" + objectName);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                Patient patient = (Patient) objectInputStream.readObject();
+                patients.put(patient.nationalCode, patient);
+                objectInputStream.close();
+                fileInputStream.close();
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("Can't load...");
+            }
         }
     }
 
@@ -38,6 +50,7 @@ public class Patient implements Serializable {
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
                 objectOutputStream.writeObject(patient);
                 objectOutputStream.close();
+                fileOutputStream.close();
             } catch (IOException e) {
                 System.out.println("Cannot save data...");
             }

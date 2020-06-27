@@ -58,10 +58,6 @@ public class VisitTime implements Serializable {
 
     public static void load() {
 
-        boolean isMoreObjects = true;
-        while(isMoreObjects) {
-
-        }
     }
 
     public static void save() {
@@ -73,6 +69,7 @@ public class VisitTime implements Serializable {
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
                 objectOutputStream.writeObject(visitTime);
                 objectOutputStream.close();
+                fileOutputStream.close();
                 counter++;
             } catch (IOException e) {
                 e.printStackTrace();
