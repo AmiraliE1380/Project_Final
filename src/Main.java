@@ -68,7 +68,10 @@ public class Main {
                 String datesInString = information.split(",")[1];
                 String beginningDate = datesInString.substring(0, 16);
                 String endDate = datesInString.substring(0, 10) + datesInString.substring(16);
-
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
+                Date date1 = format.parse(beginningDate);
+                Date date2 = format.parse(endDate);
+                VisitTime.reserveTimeForPatient(date1, date2, nationalCode);
                 break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());

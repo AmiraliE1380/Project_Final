@@ -15,7 +15,7 @@ public class VisitTime {
         this.patientsNationalCode = patientsNationalCode;
     }
 
-    public static void reserveTimeForPatient() {
+    public static void reserveTimeForPatient(Date date1, Date date2, int nationalCode) throws Exception{
 
     }
 }
