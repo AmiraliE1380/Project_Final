@@ -9,5 +9,7 @@ public class Patient {
         this.nationalCode = nationalCode;
     }
 
-
+    public int getNationalCode() {
+        return nationalCode;
+    }
 }

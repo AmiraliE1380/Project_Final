@@ -1,4 +1,3 @@
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,11 +8,9 @@ import java.util.regex.Pattern;
 public class Main {
     private static Scanner scanner;
     private static ArrayList<Patient> patients;
-    private static ArrayList<VisitTime> visitTimes;
     private static final String DAT_PATTERN = "\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}$";
     static {
         patients = new ArrayList<>();
-        visitTimes = new ArrayList<>();
     }
 
     public static void main(String[] args) {
@@ -65,18 +62,27 @@ public class Main {
             try {
                 String information = getDateAndNationalCode(scanner.nextLine().trim());
                 int nationalCode = Integer.parseInt(information.split(",")[0]);
+                hasPatientRegistered(nationalCode);
                 String datesInString = information.split(",")[1];
                 String beginningDate = datesInString.substring(0, 16);
                 String endDate = datesInString.substring(0, 10) + datesInString.substring(16);
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
                 Date date1 = format.parse(beginningDate);
                 Date date2 = format.parse(endDate);
-                VisitTime.reserveTimeForPatient(date1, date2, nationalCode);
+                System.out.println(VisitTime.reserveTimeForPatient(date1, date2, nationalCode));
                 break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static void hasPatientRegistered(int nationalCode) throws Exception {
+        for(Patient patient : patients) {
+            if(patient.getNationalCode() == nationalCode)
+                return;
+        }
+        throw new Exception("You must first register!");
     }
 
     private static String getDateAndNationalCode(String input) throws Exception {
@@ -100,7 +106,7 @@ public class Main {
                 Date date2 = format.parse(endDate);
                 System.out.println("Starts at: " + date1.toString());
                 System.out.println("Ends at: " + date2.toString());
-                visitTimes.add(new VisitTime(date1, date2));
+                new VisitTime(date1, date2);
                 break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
