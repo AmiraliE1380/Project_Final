@@ -69,7 +69,8 @@ public class Main {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
                 Date date1 = format.parse(beginningDate);
                 Date date2 = format.parse(endDate);
-                System.out.println(VisitTime.reserveTimeForPatient(date1, date2, nationalCode));
+                System.out.println("You can see the doctor between these two dates:\n"
+                        + VisitTime.reserveTimeForPatient(date1, date2, nationalCode));
                 break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
