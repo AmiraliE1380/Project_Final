@@ -53,7 +53,10 @@ public class Main {
     }
 
     private static void viewRecords() {
-
+        ArrayList<VisitTime> visitTimes = VisitTime.getVisitTimes();
+        for(VisitTime visitTime : visitTimes) {
+            System.out.println(visitTime);
+        }
     }
 
     private static void reserve() {

@@ -48,7 +48,12 @@ public class VisitTime implements Serializable {
 
     @Override
     public String toString() {
-        return beginningDate.toString() + '\n' + endDate.toString() + '\n';
+        String information;
+        if(patientsNationalCode != -1)
+            information = String.valueOf(patientsNationalCode);
+        else
+            information = "";
+        return information + "\n" + beginningDate.toString() + '\n' + endDate.toString() + '\n';
     }
 
     public static void load() {
