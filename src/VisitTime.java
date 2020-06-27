@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Map;
 
 public class VisitTime {
     private static ArrayList<VisitTime> visitTimes;
@@ -41,4 +40,6 @@ public class VisitTime {
     public void setPatientsNationalCode(int patientsNationalCode) {
         this.patientsNationalCode = patientsNationalCode;
     }
+
+
 }

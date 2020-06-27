@@ -7,11 +7,7 @@ import java.util.regex.Pattern;
 
 public class Main {
     private static Scanner scanner;
-    private static ArrayList<Patient> patients;
     private static final String DAT_PATTERN = "\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}$";
-    static {
-        patients = new ArrayList<>();
-    }
 
     public static void main(String[] args) {
         run();
@@ -79,11 +75,8 @@ public class Main {
     }
 
     private static void hasPatientRegistered(int nationalCode) throws Exception {
-        for(Patient patient : patients) {
-            if(patient.getNationalCode() == nationalCode)
-                return;
-        }
-        throw new Exception("You must first register!");
+        if(Patient.getPatientByNationalCode(nationalCode) == null)
+            throw new Exception("You must first register!");
     }
 
     private static String getDateAndNationalCode(String input) throws Exception {
@@ -135,7 +128,7 @@ public class Main {
                 System.out.println(e.getMessage());
             }
         }
-        patients.add(new Patient(information[0], Integer.parseInt(information[1]), Integer.parseInt(information[2])));
+        new Patient(information[0], Integer.parseInt(information[1]), Integer.parseInt(information[2]));
     }
 
     private static String[] getPatientsInformation(String nextLine) throws Exception {
