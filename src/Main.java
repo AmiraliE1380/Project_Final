@@ -9,6 +9,11 @@ import java.util.regex.Pattern;
 public class Main {
     private static Scanner scanner;
     private static ArrayList<Patient> patients;
+    private static ArrayList<VisitTime> visitTimes;
+    static {
+        patients = new ArrayList<>();
+        visitTimes = new ArrayList<>();
+    }
 
     public static void main(String[] args) {
         run();
@@ -69,7 +74,6 @@ public class Main {
                 Date date2 = format.parse(endDate);
                 System.out.println(date1.toString());
                 System.out.println(date2.toString());
-                information = getPatientsInformation(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
