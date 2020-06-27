@@ -23,7 +23,10 @@ public class Patient implements Serializable {
     }
 
     public static void load() {
+        boolean isMoreObjects = true;
+        while(isMoreObjects) {
 
+        }
     }
 
     public static void save() {

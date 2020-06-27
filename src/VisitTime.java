@@ -42,6 +42,10 @@ public class VisitTime implements Serializable {
         this.patientsNationalCode = patientsNationalCode;
     }
 
+    public static ArrayList<VisitTime> getVisitTimes() {
+        return visitTimes;
+    }
+
     @Override
     public String toString() {
         return beginningDate.toString() + '\n' + endDate.toString() + '\n';
@@ -49,6 +53,10 @@ public class VisitTime implements Serializable {
 
     public static void load() {
 
+        boolean isMoreObjects = true;
+        while(isMoreObjects) {
+
+        }
     }
 
     public static void save() {
