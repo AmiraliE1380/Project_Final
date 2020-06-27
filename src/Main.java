@@ -8,7 +8,7 @@ public class Main {
     }
 
     private static void run() {
-        String input;
+        int input;
         Scanner scanner = new Scanner(System.in);
         while(true) {
             try {
@@ -20,12 +20,16 @@ public class Main {
         }
     }
 
-    private static String validateInput(String nextLine) throws Exception {
+    private static int validateInput(String nextLine) throws Exception {
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(nextLine);
         if(!matcher.matches()) {
             throw new Exception("Enter a Number!");
         }
-        return null;
+        Integer input = Integer.parseInt(nextLine);
+        if(input < 1 || input > 5) {
+            throw new Exception("Enter one of the above options!");
+        }
+        return input;
     }
 }
