@@ -1,7 +1,8 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Patient {
+public class Patient implements Serializable {
     private static HashMap<Integer, Patient> patients;
     private String name;
     private int nationalCode;
@@ -19,5 +20,21 @@ public class Patient {
 
     public static Patient getPatientByNationalCode(int nationalCode) {
         return patients.get(nationalCode);
+    }
+
+    public static void load() {
+
+    }
+
+    public static void save() {
+        for(Patient patient : patients.values()) {
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream(String.valueOf(patient.nationalCode));
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                objectOutputStream.writeObject(patient);
+            } catch (IOException e) {
+                System.out.println("Cannot save data...");
+            }
+        }
     }
 }

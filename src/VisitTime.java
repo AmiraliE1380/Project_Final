@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class VisitTime {
+public class VisitTime implements Serializable {
     private static ArrayList<VisitTime> visitTimes;
     private Date beginningDate;
     private Date endDate;
@@ -41,5 +42,11 @@ public class VisitTime {
         this.patientsNationalCode = patientsNationalCode;
     }
 
+    public static void load() {
 
+    }
+
+    public static void save() {
+
+    }
 }

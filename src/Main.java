@@ -10,6 +10,8 @@ public class Main {
     private static final String DAT_PATTERN = "\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}$";
 
     public static void main(String[] args) {
+        Patient.load();
+        VisitTime.load();
         run();
     }
 
@@ -39,6 +41,8 @@ public class Main {
                         viewRecords();
                         break;
                     case 5:
+                        Patient.save();
+                        VisitTime.save();
                         System.exit(1);
                 }
             } catch (Exception e) {
