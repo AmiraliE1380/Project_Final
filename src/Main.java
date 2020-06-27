@@ -25,7 +25,7 @@ public class Main {
                     "4. Visits' records\n" +
                     "5. Exit");
             try {
-                input = validateInput(scanner.nextLine());
+                input = validateInput(scanner.nextLine().trim());
                 switch (input) {
                     case 1:
                         createAccount();
@@ -61,11 +61,11 @@ public class Main {
         while (information == null) {
             System.out.println("Enter beginning and end date:\nyyyy-MM-dd-HH-mm-HH-mm\nExample:2020-11-23-12-00-14-00");
             try {
-                String dateInput = getDateInput(scanner.nextLine());
+                String dateInput = getDateInput(scanner.nextLine().trim());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm");
             String dateString = format.format( new Date());
             try {
                 Date date = format.parse(dateString);
@@ -81,10 +81,12 @@ public class Main {
     }
 
     private static String getDateInput(String nextLine) throws Exception {
-        Pattern pattern = Pattern.compile("^[a-zA-Z]+-\\d+-\\d+$");
+        Pattern pattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}$");
         Matcher matcher = pattern.matcher(nextLine);
         if(!matcher.matches())
             throw new Exception("Enter valid input!");
+        String beginningDate = nextLine.substring(0, 16);
+        String endDate = nextLine.substring(0, 10) + nextLine.substring(16);
         return nextLine;
     }
 
@@ -93,7 +95,7 @@ public class Main {
         while (information == null) {
             System.out.println("Enter:\nName-National Code-Age");
             try {
-                information = getPatientsInformation(scanner.nextLine());
+                information = getPatientsInformation(scanner.nextLine().trim());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
