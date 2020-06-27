@@ -10,6 +10,7 @@ public class Main {
     private static Scanner scanner;
     private static ArrayList<Patient> patients;
     private static ArrayList<VisitTime> visitTimes;
+    private static final String DAT_PATTERN = "\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}$";
     static {
         patients = new ArrayList<>();
         visitTimes = new ArrayList<>();
@@ -58,7 +59,30 @@ public class Main {
     }
 
     private static void reserve() {
+        while(true) {
+            System.out.println("Enter you national code, then enter beginning and end date:" +
+                    "\nyyyy-MM-dd-HH-mm-HH-mm\nExample:2020-11-23-12-00-14-00");
+            try {
+                String information = getDateAndNationalCode(scanner.nextLine().trim());
+                int nationalCode = getNationalCodeInput(information);
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
+    private static int getNationalCodeInput(String information) {
+        return 0;
+    }
+
+    private static String getDateAndNationalCode(String input) throws Exception {
+        Pattern pattern = Pattern.compile("^\\d+-" + DAT_PATTERN);
+        Matcher matcher = pattern.matcher(input);
+        if(!matcher.matches())
+            throw new Exception("Enter information in the correct format!");
+        input = input.replaceFirst("-", ",");
+        return input;
     }
 
     private static void determineTime() {
@@ -82,7 +106,7 @@ public class Main {
     }
 
     private static String getDateInput(String nextLine) throws Exception {
-        Pattern pattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}$");
+        Pattern pattern = Pattern.compile("^" + DAT_PATTERN);
         Matcher matcher = pattern.matcher(nextLine);
         if(!matcher.matches())
             throw new Exception("Enter valid input!");
