@@ -57,7 +57,22 @@ public class VisitTime implements Serializable {
     }
 
     public static void load() {
-
+        File directory = new File("visit times");
+        String[] pathNames = directory.list();
+        if (pathNames == null)
+            return;
+        for(String objectName : pathNames) {
+            try {
+                FileInputStream fileInputStream = new FileInputStream("visit times\\" + objectName);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                VisitTime visitTime = (VisitTime) objectInputStream.readObject();
+                visitTimes.add(visitTime);
+                objectInputStream.close();
+                fileInputStream.close();
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("Can't load...");
+            }
+        }
     }
 
     public static void save() {
