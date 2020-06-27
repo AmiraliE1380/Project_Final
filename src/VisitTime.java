@@ -52,14 +52,17 @@ public class VisitTime implements Serializable {
     }
 
     public static void save() {
-        new File("Visit Times").mkdir();
+        new File("visit times").mkdir();
+        int counter = 0;
         for(VisitTime visitTime : visitTimes) {
             try {
-                FileOutputStream fileOutputStream = new FileOutputStream("Visit Times\\" + visitTime.toString());
+                FileOutputStream fileOutputStream = new FileOutputStream("visit times\\" + counter);
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
                 objectOutputStream.writeObject(visitTime);
                 objectOutputStream.close();
+                counter++;
             } catch (IOException e) {
+                e.printStackTrace();
                 System.out.println("Cannot save data...");
             }
         }

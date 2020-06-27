@@ -41,6 +41,7 @@ public class Main {
                         viewRecords();
                         break;
                     case 5:
+                        scanner.close();
                         Patient.save();
                         VisitTime.save();
                         System.exit(1);
