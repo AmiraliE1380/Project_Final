@@ -11,6 +11,12 @@ public class Main {
         int input;
         Scanner scanner = new Scanner(System.in);
         while(true) {
+            System.out.println("What do you want to do?\n" +
+                    "1. Create an account\n" +
+                    "2. Determine a time\n" +
+                    "3. See a doctor\n" +
+                    "4. Visits' records\n" +
+                    "5. Exit");
             try {
                 input = validateInput(scanner.nextLine());
             } catch (Exception e) {
