@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
     private static Scanner scanner;
+    private static ArrayList<Patient> patients;
 
     public static void main(String[] args) {
         run();
@@ -56,23 +58,24 @@ public class Main {
     }
 
     private static void createAccount() {
-        String input = "";
-        while (input.length() == 0) {
+        String[] information = null;
+        while (information == null) {
             System.out.println("Enter:\nName-National Code-Age");
             try {
-                input = getPatientsInformation(scanner.nextLine());
+                information = getPatientsInformation(scanner.nextLine());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
+        patients.add(new Patient(information[0], Integer.parseInt(information[1]), Integer.parseInt(information[2])));
     }
 
-    private static String getPatientsInformation(String nextLine) throws Exception {
+    private static String[] getPatientsInformation(String nextLine) throws Exception {
         Pattern pattern = Pattern.compile("^[a-zA-Z]+-\\d+-\\d+$");
         Matcher matcher = pattern.matcher(nextLine);
         if(!matcher.matches())
             throw new Exception("Enter valid input!");
-        return nextLine;
+        return nextLine.split("-");
     }
 
     private static int validateInput(String nextLine) throws Exception {
